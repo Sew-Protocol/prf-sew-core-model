@@ -1,34 +1,33 @@
-# PRF Sew Core Model extension
+# PRF Sew Core Model extension candidate
 
-This repository contains the PRF behavior adapter for the Solidity Sew Core
-profile. It is deliberately narrower than the full Sew protocol model: it
-validates the supported Sew Core actions and configuration, then delegates
-model transitions to `prf-sew-protocol-model`.
+This repository candidate contains the behavior adapter for the Solidity Sew
+Core profile and the Sew-specific yield capability provider needed by the
+shared PRF model. It validates the supported Sew Core actions and configuration,
+then delegates transitions to the pinned `prf-sew-protocol-model` package.
 
-## Scope and dependency
+## Dependencies
 
-The adapter source, its contract tests, and pinned Solidity comparison vectors
-live here. The Sew protocol implementation remains in the PRF monorepo at
-`packages/sew-protocol-model` / `protocols_src`; this repository does not claim
-to extract or independently own that implementation.
+`deps.edn` pins the public PRF source revision
+`54a5d925edb974a61d71229e81d1e62e4baf78f2`. Its Sew model manifest pins PRF
+core revision `4b628c8ef15b1970425804aaf06014c960469357` and Sew pro-rata
+economics revision `ae258b36f3b6f1c0ee4bcf9d913e4cea136994c0`. The repository
+includes the small Sew yield integration adapter because the model requires its
+initialization and invariant capabilities even when Sew Core disables yield.
+The shared yield runtime comes from the pinned PRF core dependency.
 
-`deps.edn` resolves the model from immutable PRF Git revision
-`b94b091cfbaf46ec34ae2ade4920f9a3751e3097`, using the model subdirectory as
-the dependency root. The model manifest currently resolves the shared PRF
-framework from that same checkout. Both limitations are explicit source-level
-dependencies; neither relies on a local workspace path.
-
-This is a local candidate repository. It has no configured remote and has not
-been published. The original in-tree adapter remains in the PRF workspace
-until the candidate has been reviewed and its integration path is agreed.
+This source revision resolves and passes its package contract suite in a clean
+temporary project. This checkout has no configured remote and is not published.
+The PRF monorepo source remains authoritative until this candidate is reviewed
+and its integration path is agreed.
 
 ## Layout
 
-- `src/` — Sew Core profile adapter
-- `test/` — adapter contract tests and Solidity conformance vectors
+- `src/prf/extensions/sew_core_model/` — Sew Core behavior adapter
+- `src/resolver_sim/protocols/sew/` — required Sew yield capability integration
+- `test/` — adapter contract tests and Solidity-linked vectors
 
 Run the package tests from this directory with:
 
 ```sh
-clojure -M -e "(require '[clojure.test :as t] 'prf.extensions.sew-core-model.adapter-test) (t/run-tests 'prf.extensions.sew-core-model.adapter-test)"
+clojure -Srepro -M:test
 ```

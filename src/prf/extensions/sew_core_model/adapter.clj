@@ -5,10 +5,10 @@
    while rejecting actions and configuration outside the Sew Core scope. It is
    an optional package boundary; the in-tree model dependency is still broad."
   (:require [clojure.string :as str]
+            [resolver-sim.extensions.api.protocol.v1 :as protocol-api]
             [resolver-sim.protocols.protocol :as proto]
-            [resolver-sim.protocols.sew :as sew]
-            [resolver-sim.protocols.sew.compat :as compat]
-            [resolver-sim.protocols.registry :as registry]))
+            [resolver-sim.protocols.sew.yield-extension]
+            [resolver-sim.protocols.sew :as sew]))
 
 (def protocol-profile :sew-core-v1)
 
@@ -100,7 +100,7 @@
 (defn validate-event!
   "Reject actions and option fields not represented by the Sew Core profile."
   [event]
-  (let [action (compat/canonical-action event)
+  (let [action (sew/canonical-action event)
         params (:params event {})
         excluded (vec (excluded-config-paths params))
         unsupported-params (vec (remove (get event-parameter-allowlist action #{})
@@ -309,8 +309,11 @@
       protocol scenario replay-options))))
 
 (defn register-capabilities! []
-  (registry/register-capability! "sew-v1" :sew-core/dispatch-action dispatch-action)
-  (registry/register-capability! "sew-v1" :sew-core/validate-scenario validate-scenario!))
+  (protocol-api/register-capability!
+   "sew-v1" :sew-core/dispatch-action dispatch-action)
+  (protocol-api/register-capability!
+   "sew-v1" :sew-core/validate-scenario validate-scenario!))
 
-(registry/register-capability-provider! "sew-v1" :sew-core register-capabilities!)
+(protocol-api/register-capability-provider!
+ "sew-v1" :sew-core register-capabilities!)
 (register-capabilities!)
