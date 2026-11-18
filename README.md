@@ -15,10 +15,15 @@ includes the small Sew yield integration adapter because the model requires its
 initialization and invariant capabilities even when Sew Core disables yield.
 The shared yield runtime comes from the pinned PRF core dependency.
 
-This source revision resolves and passes its package contract suite in a clean
-temporary project. This checkout has no configured remote and is not published.
-The PRF monorepo source remains authoritative until this candidate is reviewed
-and its integration path is agreed.
+This repository is public at
+https://github.com/Sew-Protocol/prf-sew-core-model. A fresh clone with an empty
+Clojure dependency cache resolved the pinned dependencies and passed the
+contract suite (10 tests, 62 assertions). The GitHub Actions workflow repeats
+dependency resolution and package tests on pushes and pull requests; its first
+run passed on commit `8c952167`.
+
+The PRF monorepo source remains authoritative until the package integration is
+independently reviewed and the PRF profile has migrated to this repository.
 
 ## Layout
 
