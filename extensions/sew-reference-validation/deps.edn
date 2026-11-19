@@ -1,0 +1,16 @@
+;; Sew-owned adapter for PRF's generic reference-validation harness.
+;; The model remains a sibling package in this candidate repository until it
+;; has a published immutable revision.
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        org.protocol-robustness/prf-core
+        {:git/url "https://github.com/protocol-robustness/protocol-robustness-framework.git"
+         :git/sha "4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3"
+         :deps/root "."}
+        org.protocol-robustness/prf-sew-protocol-model
+        {:local/root "../../packages/sew-protocol-model"}
+        org.protocol-robustness/prf-sew-yield-integration
+        {:local/root "../sew-yield-integration"}}
+ :aliases {:reference-validation
+           {:extra-paths ["scenarios/edn"]
+            :main-opts ["-m" "resolver-sim.protocols.sew.reference-validation-runner"]}}}

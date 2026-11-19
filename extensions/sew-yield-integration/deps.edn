@@ -1,0 +1,10 @@
+;; Sew-owned candidate for the yield adapter. The sibling model source is
+;; resolved from this repository during development.
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        org.protocol-robustness/prf-sew-protocol-model
+        {:local/root "../../packages/sew-protocol-model"}}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {org.protocol-robustness/prf-sew-pro-rata-economics
+                               {:local/root "../sew-pro-rata-economics"}}
+                  :main-opts ["-m" "resolver-sim.protocols.sew.yield.test-runner"]}}}

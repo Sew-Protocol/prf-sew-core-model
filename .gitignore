@@ -1,3 +1,6 @@
 .cpcache/
+**/.cpcache/
 target/
 results/
+*.log
+/qualification/sew-domain-reference-v1/actual/

@@ -19,3 +19,5 @@ jobs:
         run: clojure -Srepro -P
       - name: Run package contract tests
         run: clojure -Srepro -M:test
+      - name: Run extracted model, extension, and qualification suites
+        run: scripts/test.sh

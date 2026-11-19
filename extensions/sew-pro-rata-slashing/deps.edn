@@ -1,0 +1,17 @@
+;; Sew's slashing/evidence adapter over the generic PRF claim/evaluation API.
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        org.protocol-robustness/prf-core
+        {:git/url "https://github.com/protocol-robustness/protocol-robustness-framework.git"
+         :git/sha "4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3"
+         :deps/root "."}
+        org.protocol-robustness/prf-sew-protocol-model
+        {:local/root "../../packages/sew-protocol-model"}
+        org.protocol-robustness/prf-sew-pro-rata-economics
+        {:local/root "../sew-pro-rata-economics"}}
+ :aliases {:test {:extra-paths ["test" "../../packages/sew-protocol-model/test"]
+                  :extra-deps {org.protocol-robustness/prf-sew-yield-integration
+                               {:local/root "../sew-yield-integration"}
+                               org.protocol-robustness/prf-sew-reference-validation
+                               {:local/root "../sew-reference-validation"}}
+                  :main-opts ["-m" "resolver-sim.protocols.sew.pro-rata.slashing-test-runner"]}}}
