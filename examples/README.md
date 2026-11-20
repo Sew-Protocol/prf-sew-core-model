@@ -9,5 +9,5 @@ versioned protocol parameters for any actual run.
 `economic-assumptions.edn` is an illustrative use-case input. It is not loaded
 by the reference-validation runner and does not define protocol defaults.
 
-The PRF source copy remains until the Sew repository is fetchable and PRF
-profiles and consumers have switched.
+The PRF source copy of `sew-protocol-fixture.edn` remains until PRF profiles
+and consumers have switched to the Sew package.
