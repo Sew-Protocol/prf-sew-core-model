@@ -11,13 +11,11 @@ obsolete local `workspaces/sew` overlay, and the duplicate
 `suites/sew-domain-reference-v1` outputs. The copied trace retained for one
 generic forensic-graph test is explicitly a non-authoritative test fixture.
 
-The in-tree `packages/sew-protocol-model` mirror and five Sew scenario source
-files remain in PRF. The model boundary overlaps Force Authorization work
-owned by another agent, and PRF's scenario catalogue still discovers those
-local inputs. The Sew package owns the canonical scenario suite and expected
-outputs; moving the remaining source inputs needs a separate catalogue and
-model ownership change. The PRF runner and its claims registry also remain
-local because they include Force Authorization claims.
+The in-tree `packages/sew-protocol-model` mirror remains in PRF because its
+boundary overlaps Force Authorization work owned by another agent. The five
+Sew scenario inputs and expected outputs are consumed from the Sew package's
+classpath resources and canonical qualification suite. The PRF runner and its
+claims registry remain local because they include Force Authorization claims.
 
 PRF path checks and profile boundary/load checks passed after the adapter
 switch. The full PRF test suite was not run for that source-removal change.
@@ -108,17 +106,15 @@ adapter cleanup.
 
 ## Sew domain-reference qualification suite
 
-The candidate copies `suites/sew-domain-reference-v1` into
-`qualification/sew-domain-reference-v1`, and owns copies of its five scenario
-inputs under `extensions/sew-reference-validation/scenarios/edn`. The package
-also owns the Sew replay, invariant-checker, projection, and trace-export
-adapter. Its CLI delegates to PRF's generic reference-validation harness at
-the pinned PRF core revision.
+The package owns the canonical
+`qualification/sew-domain-reference-v1` suite and the five scenario inputs
+under `extensions/sew-reference-validation/resources/scenarios/edn`. Its
+replay, invariant-checker, projection, and trace-export adapter delegates to
+PRF's generic reference-validation harness at the pinned PRF core revision.
 
-PRF no longer carries the duplicate suite manifest or expected-output bundle.
-Five scenario source inputs remain in PRF's scenario catalogue and must be
-removed only after that catalogue can resolve the Sew package's scenario
-resources without requiring a local sibling checkout.
+PRF scenario loading resolves those inputs from package classpath resources;
+the duplicate suite bundle and scenario source copies have been removed from
+PRF.
 
 ## Audit of the requested economic artifacts
 
