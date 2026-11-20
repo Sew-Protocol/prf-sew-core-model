@@ -1,0 +1,50 @@
+{:qualification/id :sew-domain-reference-solidity-trace-history-v1
+ :qualification/status :historical
+ :solidity/repository "Sew-Protocol/sew-protocol"
+ :solidity/revision "f248eceb9d80d9228367cd8a39f618c99e09b9a9"
+ :notice
+ "These records preserve the former PRF manifest's exact-byte correspondences.
+  They are not a differential-equivalence claim for the current Sew model
+  output. Current qualification traces differ byte-wise and require
+  requalification against a pinned Solidity revision."
+ :traces
+ [{:id "sew-001-same-block-dual-resolution"
+   :scenario "resources/scenarios/edn/S56_same-block-dual-resolution-order-invariant.edn"
+   :historical-source-sha256 "8960f2f20240c2c75648a7d18d9d688e24d7d9ce324a2f7b1e2c11d62114da66"
+   :current-qualification-trace "qualification/sew-domain-reference-v1/expected/traces/sew-001-same-block-dual-resolution.trace.json"
+   :current-qualification-sha256 "ad2f474bd38f3b9cff24463a5b2386209e93773afe4e59dd655d042de714b322"
+   :solidity-fixture "test/foundry/traces/v2/sew-001.json"
+   :solidity-fixture-sha256 "8960f2f20240c2c75648a7d18d9d688e24d7d9ce324a2f7b1e2c11d62114da66"
+   :current-difference [:generated-by]}
+  {:id "sew-002-pending-settlement-expiry"
+   :scenario "resources/scenarios/edn/S57_pending-settlement-expiry-boundary-1s.edn"
+   :historical-source-sha256 "f16795d789afbe8499a5f6f9e1e56f70f43cfffdf8bfb8717c71fddf31ab24ec"
+   :current-qualification-trace "qualification/sew-domain-reference-v1/expected/traces/sew-002-pending-settlement-expiry.trace.json"
+   :current-qualification-sha256 "f6378049c5f6e2c9fb9a385baa2e219fcfe852ce0b8819db772f6b9936ed9660"
+   :solidity-fixture "test/foundry/traces/v2/sew-002.json"
+   :solidity-fixture-sha256 "f16795d789afbe8499a5f6f9e1e56f70f43cfffdf8bfb8717c71fddf31ab24ec"
+   :current-difference [:generated-by :trace-kind]}
+  {:id "sew-003-escalation-after-terminal"
+   :scenario "resources/scenarios/edn/S58_escalation-after-terminal-hard-reject.edn"
+   :historical-source-sha256 "ef00822a58d34fa15919db2db3e52dc153ed80b9d64c37a835fb54e438c82585"
+   :current-qualification-trace "qualification/sew-domain-reference-v1/expected/traces/sew-003-escalation-after-terminal.trace.json"
+   :current-qualification-sha256 "baf1ec4b075412688afb36c78eb11a2f0c038d09421bc1b35a8e2a76858b87a3"
+   :solidity-fixture "test/foundry/traces/v2/sew-003.json"
+   :solidity-fixture-sha256 "ef00822a58d34fa15919db2db3e52dc153ed80b9d64c37a835fb54e438c82585"
+   :current-difference [:generated-by]}
+  {:id "sew-004-force-refund-illegal-release"
+   :scenario "resources/scenarios/edn/S64_force-refund-then-illegal-release-attempt.edn"
+   :historical-source-sha256 "19f252ea31560b1b3a763e270f8fc07a82447363b170d85daacb581ea0be71a1"
+   :current-qualification-trace "qualification/sew-domain-reference-v1/expected/traces/sew-004-force-refund-illegal-release.trace.json"
+   :current-qualification-sha256 "8a9a114da92f5ed184fe4e221389bb21b52272293b61a28dae96483b9bb57d2c"
+   :solidity-fixture "test/foundry/traces/v2/sew-004.json"
+   :solidity-fixture-sha256 "19f252ea31560b1b3a763e270f8fc07a82447363b170d85daacb581ea0be71a1"
+   :current-difference [:generated-by]}
+  {:id "sew-005-escalation-supersedes-pending"
+   :scenario "resources/scenarios/edn/S65_escalation-supersedes-old-pending-then-old-path-attempt.edn"
+   :historical-source-sha256 "8e049967000ea9ffbaedf0ae2ca98dba9160518087d7069fbb0104da47c1931c"
+   :current-qualification-trace "qualification/sew-domain-reference-v1/expected/traces/sew-005-escalation-supersedes-pending.trace.json"
+   :current-qualification-sha256 "c2c883c3199c1dc7480177e4690c006a39b0119ba9f332be8e74a9f2e93370a7"
+   :solidity-fixture "test/foundry/traces/v2/sew-005.json"
+   :solidity-fixture-sha256 "8e049967000ea9ffbaedf0ae2ca98dba9160518087d7069fbb0104da47c1931c"
+   :current-difference [:generated-by]}]}

@@ -16,6 +16,12 @@ classpath resources when this package is selected. PRF retains its existing
 source copies until its manifests and repository-based forensic tools consume
 the published package revision.
 
+The former PRF-to-Solidity byte mappings are preserved in
+`qualification/sew-domain-reference-v1/solidity-trace-history.edn`. The
+current expected CDRS outputs have different hashes from those historical
+Solidity fixtures, so the file records history only; current differential
+equivalence still needs to be requalified.
+
 Run the extracted domain-reference suite from the repository root:
 
 ```sh
