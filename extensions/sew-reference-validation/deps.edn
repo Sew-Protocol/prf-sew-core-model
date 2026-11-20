@@ -16,5 +16,4 @@
          :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
          :deps/root "extensions/sew-yield-integration"}}
  :aliases {:reference-validation
-           {:extra-paths ["scenarios/edn"]
-            :main-opts ["-m" "resolver-sim.protocols.sew.reference-validation-runner"]}}}
+           {:main-opts ["-m" "resolver-sim.protocols.sew.reference-validation-runner"]}}}

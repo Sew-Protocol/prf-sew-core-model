@@ -9,6 +9,12 @@ The Sew model and yield integration are sibling packages in this candidate
 repository and are resolved through local paths, so this is not yet an
 independently resolvable published package.
 
+The five domain-reference scenario inputs are packaged under
+`resources/scenarios/edn`, so PRF's scenario loader can resolve them as
+classpath resources when this package is selected. PRF retains its existing
+source copies until its manifests and repository-based forensic tools consume
+the published package revision.
+
 Run the extracted domain-reference suite from the repository root:
 
 ```sh
