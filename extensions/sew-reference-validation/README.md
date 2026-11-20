@@ -4,10 +4,11 @@ This candidate supplies Sew replay, invariant-checker, and trace-export
 capabilities to PRF's generic reference-validation harness. It also owns the
 projection and trace-export implementations needed by the Sew scenarios.
 
-The runtime pins PRF core to `4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3`.
-The Sew model and yield integration are sibling packages in this candidate
-repository and are resolved through local paths, so this is not yet an
-independently resolvable published package.
+The runtime pins PRF core, the Sew model, and yield integration to immutable
+Git revisions. A clean `clojure -Srepro -P` resolves the currently published
+dependency revisions. The resource relocation in this candidate is not yet in
+a published revision, so PRF retains its local scenario copies until the pin
+advances and repository-based consumers switch to the package.
 
 The five domain-reference scenario inputs are packaged under
 `resources/scenarios/edn`, so PRF's scenario loader can resolve them as
