@@ -1,0 +1,7 @@
+;; Illustrative Sew use-case assumptions only. They are not deployment defaults
+;; or authoritative protocol policy.
+{:assumptions/id "economic-assumptions-example-v1"
+ :resolver-corruption {:slashable-bond-multiple 1.25
+                       :appeal-intervention-probability 0.65
+                       :reputation-decay-on-malice true}
+ :classification :illustrative-example}
