@@ -29,6 +29,8 @@ org.protocol-robustness/prf-sew-protocol-model
 
 Consumers can add only the Sew adapters their application uses. The package
 manifests pin shared sibling dependencies to the same Sew repository revision.
+The code-free `extensions/sew-prf-runtime` package composes the full Sew
+runtime for PRF runner aliases that need every adapter.
 
 ## Layout
 
