@@ -1,27 +1,8 @@
-;; Repository-level runtime entrypoint for the Sew model and adapters.
-;; Individual subdirectories retain focused manifests and tests, while
-;; consumers resolve one revision instead of composing sibling Git packages.
-{:paths ["src"
-         "packages/sew-protocol-model/src"
-         "packages/sew-protocol-model/resources"
-         "extensions/sew-pro-rata-economics/src"
-         "extensions/sew-pro-rata-application/src"
-         "extensions/sew-pro-rata-slashing/src"
-         "extensions/sew-pro-rata-test-vectors/src"
-         "extensions/sew-pro-rata-test-vectors/resources"
-         "extensions/sew-yield-integration/src"
-         "extensions/sew-financial-lifecycle/src"
-         "extensions/sew-analysis/src"
-         "extensions/sew-research-models/src"
-         "extensions/sew-research/src"
-         "extensions/sew-bounty-route/src"
-         "extensions/sew-bounty/src"
-         "extensions/sew-reference-validation/src"
-         "extensions/sew-reference-validation/scenarios/edn"]
+{:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
-        org.protocol-robustness/prf-core
-        {:git/url "https://github.com/protocol-robustness/protocol-robustness-framework.git"
-         :git/sha "4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3"
-         :deps/root "."}}
+        org.protocol-robustness/prf-sew-protocol-model
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+         :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
+         :deps/root "packages/sew-protocol-model"}}
  :aliases {:test {:extra-paths ["test"]
                   :main-opts ["-m" "prf.extensions.sew-core-model.test-runner"]}}}
