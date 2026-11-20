@@ -1,7 +1,7 @@
 ;; Aggregate dependency graph for PRF's full Sew runner aliases.
 ;; This package contains no code: profile components depend on focused Sew
 ;; packages directly, while complete runner classpaths use this composition.
-{:paths []
+{:paths ["resources"]
  :deps {org.protocol-robustness/prf-sew-core-model
         {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"

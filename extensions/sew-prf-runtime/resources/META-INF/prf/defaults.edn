@@ -1,0 +1,2 @@
+{:sew {:scenarios {:default-theory-falsification
+                   "scenarios/S26_forking-strategist-l1-reversal"}}}
