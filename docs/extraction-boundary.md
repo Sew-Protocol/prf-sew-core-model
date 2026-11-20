@@ -36,6 +36,10 @@ These additions are in a candidate branch of the public Sew repository. Keep
 their PRF copies until this candidate revision is published and PRF consumers
 resolve and qualify against it.
 
+The repository root `deps.edn` is the consumer entrypoint: it exposes the
+Sew-owned runtime roots together and pins PRF core. Consumers do not need to
+compose sibling Git subdirectory dependencies.
+
 ## Existing `prf-sew-core-model` repository
 
 [`Sew-Protocol/prf-sew-core-model`](https://github.com/Sew-Protocol/prf-sew-core-model)

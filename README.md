@@ -1,9 +1,9 @@
 # Sew Core model and protocol extensions
 
 This public Sew-owned repository contains the Solidity Sew Core behavior
-adapter and its yield capability integration. The current candidate branch
-also adds the broader Sew protocol model, application adapters, research
-models, and qualification material extracted from PRF.
+adapter and its yield capability integration, the Sew protocol model,
+application adapters, research models, and qualification material extracted
+from PRF. Its root `deps.edn` is the single runtime entrypoint for consumers.
 
 The original Sew Core package and its source history are retained. The PRF
 monorepo copies of the newly extracted model and extensions remain until this
@@ -12,16 +12,11 @@ it.
 
 ## Dependencies
 
-The existing Sew Core adapter pins PRF source revision
-`54a5d925edb974a61d71229e81d1e62e4baf78f2`. Its model manifest pins PRF core
-revision `4b628c8ef15b1970425804aaf06014c960469357` and Sew pro-rata economics
-revision `ae258b36f3b6f1c0ee4bcf9d913e4cea136994c0`. The shared yield runtime
-comes from pinned PRF core.
-
-The extracted model and extension packages pin PRF core to immutable public
-Git revisions. Their sibling package paths are local to this repository, so
-the supported qualification entrypoint is the repository-level test script;
-not every subdirectory is independently resolvable as a published package.
+The repository-level runtime entrypoint pins PRF core to immutable revision
+`4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3`. Individual subdirectories retain
+focused manifests and tests; consumers needing multiple Sew components should
+depend on this repository root rather than declaring sibling packages
+separately.
 
 ## Layout
 
