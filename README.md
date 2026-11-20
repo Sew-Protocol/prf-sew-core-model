@@ -43,6 +43,8 @@ runtime for PRF runner aliases that need every adapter.
 - `qualification/sew-domain-reference-v1/` — Sew scenarios and expected
   evidence
 - `examples/sew-protocol-fixture.edn` — non-authoritative legacy fixture
+- `qualification/sew-aggregate-held-credit-v1/` — Sew-specific portable
+  aggregate held-credit contract and fixture
 
 ## Qualification
 
