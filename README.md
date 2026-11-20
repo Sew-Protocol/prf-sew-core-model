@@ -6,10 +6,11 @@ application adapters, research models, and qualification material extracted
 from PRF. The root package exposes the Solidity adapter; model and application
 components are available through focused subdirectory packages.
 
-The original Sew Core package and its source history are retained. The PRF
-monorepo copies of the newly extracted model and extensions remain until this
-candidate revision is published and PRF consumers resolve and qualify against
-it.
+The original Sew Core package and its source history are retained. PRF profiles
+now resolve the adapter packages from this repository and the duplicate PRF
+adapter directories have been removed. PRF still retains its in-tree model
+mirror, runner integration, and scenario source copies pending separate
+ownership and consumer changes.
 
 ## Dependencies
 
@@ -57,6 +58,6 @@ Run the extracted model and extension suites with:
 scripts/test.sh
 ```
 
-The extension candidate revision requires its own review and qualification.
-The PRF source-removal gate is documented in
+The package suites and clean dependency resolution are part of its
+qualification. Remaining PRF source ownership is documented in
 [`docs/extraction-boundary.md`](docs/extraction-boundary.md).

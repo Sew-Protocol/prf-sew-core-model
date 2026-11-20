@@ -1,7 +1,26 @@
 # Extraction boundary
 
-This note tracks which economic and qualification artifacts belong in this
-Sew-owned repository and what must be true before PRF copies can be removed.
+This note tracks ownership of Sew economic and qualification artifacts across
+the Sew package and PRF consumer boundary.
+
+## Current PRF consumer status
+
+PRF profiles now resolve the Sew adapters from immutable Git subdirectory
+dependencies. The PRF working copy removed the local adapter directories, the
+obsolete local `workspaces/sew` overlay, and the duplicate
+`suites/sew-domain-reference-v1` outputs. The copied trace retained for one
+generic forensic-graph test is explicitly a non-authoritative test fixture.
+
+The in-tree `packages/sew-protocol-model` mirror and five Sew scenario source
+files remain in PRF. The model boundary overlaps Force Authorization work
+owned by another agent, and PRF's scenario catalogue still discovers those
+local inputs. The Sew package owns the canonical scenario suite and expected
+outputs; moving the remaining source inputs needs a separate catalogue and
+model ownership change. The PRF runner and its claims registry also remain
+local because they include Force Authorization claims.
+
+PRF path checks and profile boundary/load checks passed after the adapter
+switch. The full PRF test suite was not run for that source-removal change.
 
 ## Sew-owned candidate contents
 
@@ -32,9 +51,9 @@ Sew-owned repository and what must be true before PRF copies can be removed.
   `extensions/sew-pro-rata-test-vectors`; generic liquidity-fulfillment
   vectors remain in PRF.
 
-These additions are in a candidate branch of the public Sew repository. Keep
-their PRF copies until this candidate revision is published and PRF consumers
-resolve and qualify against it.
+These packages are available at immutable revisions in the public Sew
+repository. PRF profiles consume them directly; the remaining local mirrors
+listed above are separate ownership work.
 
 The model and adapters expose focused subdirectory packages. Their manifests
 pin sibling Sew packages to an immutable Git revision, rather than depending on
@@ -45,36 +64,33 @@ loading every Sew adapter.
 
 [`Sew-Protocol/prf-sew-core-model`](https://github.com/Sew-Protocol/prf-sew-core-model)
 already contains the Solidity Sew Core behavior adapter and its yield
-integration. This candidate adds the broader Sew model and extensions to that
-repository while preserving the existing package and its history. The candidate
-branch must pass its combined repository qualification before publication.
+integration. The broader Sew model and extensions are maintained in this
+repository while preserving the existing package and its history. PRF adapter
+components pin the immutable package revisions used by their consumer profile
+checks.
 
 ## PRF component migration map
 
-This maps the inspected PRF component registry to the candidate package layout.
-“Copied” means the sources and tests exist here; it does not mean the PRF
-component can be removed before the consumer switch.
+This maps PRF component declarations to their Sew package owners. “External”
+means the PRF profile selects a pinned Sew subdirectory dependency.
 
 | PRF component | Candidate disposition |
 | --- | --- |
-| `:prf/sew-escrow-kernel-v1`, `:prf/sew-protocol-model-v1` | `packages/sew-protocol-model/`; copied and clean runtime dependency resolution passed. |
-| `:prf/sew-yield-integration-v1` | `extensions/sew-yield-integration/`; copied. Shared `:prf/yield-runtime-v1` remains in PRF. |
+| `:prf/sew-escrow-kernel-v1`, `:prf/sew-protocol-model-v1` | Model package exists here and is pinned from PRF profiles; PRF keeps its model mirror pending Force Authorization ownership work. |
+| `:prf/sew-yield-integration-v1` | External `extensions/sew-yield-integration/`; shared `:prf/yield-runtime-v1` remains in PRF. |
 | `:prf/sew-core-extension-v1` | Existing adapter under `src/prf/extensions/sew_core_model/`; its source and history remain in this repository. |
 | `:prf/sew-force-authorisation-v1` | Not included here; another agent owns this extraction. Keep it in PRF until that work is reviewed and switched. |
-| `:prf/sew-analysis-v1`, `:prf/sew-research-models-v1`, `:prf/sew-research-v1` | `extensions/sew-analysis/`, `extensions/sew-research-models/`, and `extensions/sew-research/`; copied. Shared PRF simulation primitives remain in PRF. |
-| `:prf/sew-financial-lifecycle-v1` | `extensions/sew-financial-lifecycle/`; copied. |
-| `:prf/sew-pro-rata-economics-v1`, `:prf/sew-pro-rata-slashing-v1`, `:prf/sew-pro-rata-application-v1` | `extensions/sew-pro-rata-economics/`, `extensions/sew-pro-rata-slashing/`, and `extensions/sew-pro-rata-application/`; copied. Generic pro-rata allocation and verification remain in PRF. |
-| `:prf/sew-pro-rata-test-vectors-v1` | Sew slash-allocation emitter, five canonical JSON vectors, and contract tests are copied to `extensions/sew-pro-rata-test-vectors/`. The generic vector wrapper and liquidity fixtures stay in PRF; remove only the Sew-owned source/material after consumer references switch. |
-| `:prf/sew-bounty-adapter-v1`, `:prf/sew-bounty-route-v1` | `extensions/sew-bounty/` and `extensions/sew-bounty-route/`; copied. Generic bounty composition remains in PRF. |
-| Sew domain-reference validation material | `extensions/sew-reference-validation/` and `qualification/sew-domain-reference-v1/`; copied. Its generic validation harness remains in PRF. |
+| `:prf/sew-analysis-v1`, `:prf/sew-research-models-v1`, `:prf/sew-research-v1` | External `extensions/sew-analysis/`, `extensions/sew-research-models/`, and `extensions/sew-research/`. Shared PRF simulation primitives remain in PRF. |
+| `:prf/sew-financial-lifecycle-v1` | External `extensions/sew-financial-lifecycle/`. |
+| `:prf/sew-pro-rata-economics-v1`, `:prf/sew-pro-rata-slashing-v1`, `:prf/sew-pro-rata-application-v1` | External Sew packages. Generic pro-rata allocation and verification remain in PRF. |
+| `:prf/sew-pro-rata-test-vectors-v1` | Sew slash-allocation vectors are external; the generic vector wrapper and liquidity fixtures remain in PRF. |
+| `:prf/sew-bounty-adapter-v1`, `:prf/sew-bounty-route-v1` | External `extensions/sew-bounty/` and `extensions/sew-bounty-route/`. Generic bounty composition remains in PRF. |
+| Sew domain-reference validation material | Canonical suite and expected outputs are in `qualification/sew-domain-reference-v1/`; its generic validation harness remains in PRF. |
 
-After this candidate revision is published, migrate the copied PRF component
-profiles and declared test material to the immutable Sew revision. Then remove
-only the source/material paths owned exclusively by those switched components.
-The mixed vector component, force-authorisation, generic yield runtime,
-generic pro-rata, generic bounty, and shared research/runtime code require
-separate ownership decisions and must not be removed as part of that bulk
-switch.
+Adapter profile dependencies are switched. The model mirror, remaining Sew
+scenario source copies, PRF runner, claims registry, and shared components
+require separate ownership decisions and must not be removed as part of a bulk
+adapter cleanup.
 
 ## Keep in PRF
 
@@ -99,10 +115,10 @@ also owns the Sew replay, invariant-checker, projection, and trace-export
 adapter. Its CLI delegates to PRF's generic reference-validation harness at
 the pinned PRF core revision.
 
-The original PRF suite and scenario files remain in place because PRF artifacts
-still refer to them. Keep those source copies until this repository has a
-fetchable revision and the PRF-side consumer gate passes. When PRF consumers
-switch, remove or replace duplicate references as a separate change.
+PRF no longer carries the duplicate suite manifest or expected-output bundle.
+Five scenario source inputs remain in PRF's scenario catalogue and must be
+removed only after that catalogue can resolve the Sew package's scenario
+resources without requiring a local sibling checkout.
 
 ## Audit of the requested economic artifacts
 
@@ -123,7 +139,6 @@ the removal gate below is met.
 
 ## Removal gate
 
-Do not remove PRF source based on an unpublished candidate branch. First
-publish a fetchable immutable revision, update PRF profile and consumer
-dependency declarations, and pass the clean-clone consumer and qualification
-gates against that revision.
+The published package revision and PRF adapter consumer gate are in place.
+Remaining removal work is limited to the model mirror, scenario source inputs,
+runner-owned integration, and any assets that still have PRF-local consumers.
