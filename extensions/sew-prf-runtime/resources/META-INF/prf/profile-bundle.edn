@@ -115,7 +115,11 @@
                     resolver-sim.cancellation.party-preconditions
                     resolver-sim.cancellation.sew-escrow-snapshot
                     resolver-sim.cancellation.sew-projection],
-                   :material [],
+                   :material
+                   [{:path
+                     "sew/policies/default-slash-distribution-v1.edn",
+                     :kind :runtime-configuration,
+                     :package-resource? true}],
                    :source-kind :package-classpath},
        :sew-yield-integration-v1
        #:component{:plane :protocol-extension,
