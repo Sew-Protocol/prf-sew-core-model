@@ -1,0 +1,145 @@
+{:bundle/version 1,
+ :bundle/package :sew/model-extensions,
+ :profiles
+ [#:profile{:id :prf/sew-financial-lifecycle-candidate-v1,
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components
+            [:prf/sew-protocol-model-v1
+             :prf/sew-financial-lifecycle-v1],
+            :name "sew-financial-lifecycle"}
+  #:profile{:id :prf/sew-yield-integration-candidate-v1,
+            :name "sew-yield-integration",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components
+            [:prf/sew-protocol-model-v1
+             :prf/sew-yield-integration-v1]}],
+ :components
+ #:prf{:sew-escrow-kernel-v1
+       #:component{:plane :protocol-kernel,
+                   :requires [:prf/framework-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.kernel
+                    resolver-sim.protocols.sew.types
+                    resolver-sim.protocols.sew.state-machine],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.kernel],
+                   :material [],
+                   :source-kind :package-classpath},
+       :sew-protocol-model-v1
+       #:component{:plane :protocol,
+                   :requires
+                   [:prf/framework-v1 :prf/sew-escrow-kernel-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.adjudication
+                    resolver-sim.protocols.adjudication-authentication-verification
+                    resolver-sim.cancellation.admission
+                    resolver-sim.cancellation.ordinary-planner
+                    resolver-sim.cancellation.party-preconditions
+                    resolver-sim.cancellation.sew-escrow-snapshot
+                    resolver-sim.cancellation.sew-projection
+                    resolver-sim.protocols.sew
+                    resolver-sim.protocols.sew.accounting
+                    resolver-sim.protocols.sew.accounting-projection
+                    resolver-sim.protocols.sew.actions
+                    resolver-sim.protocols.sew.action-context
+                    resolver-sim.protocols.sew.adjudication-case
+                    resolver-sim.protocols.sew.adjudication-instance
+                    resolver-sim.protocols.sew.adjudication-snapshot
+                    resolver-sim.protocols.sew.adjudication-source
+                    resolver-sim.protocols.sew.appeal-bond-projection
+                    resolver-sim.protocols.sew.authority
+                    resolver-sim.protocols.sew.claimable-outcome
+                    resolver-sim.protocols.sew.compat
+                    resolver-sim.protocols.sew.config
+                    resolver-sim.protocols.sew.diff
+                    resolver-sim.protocols.sew.dispute-resolution-closure
+                    resolver-sim.protocols.sew.dispute-resolution-terminal-envelope
+                    resolver-sim.protocols.sew.dispute-ruling
+                    resolver-sim.protocols.sew.dispute-ruling-finality
+                    resolver-sim.protocols.sew.economics
+                    resolver-sim.protocols.sew.evidence-admission
+                    resolver-sim.protocols.sew.financial.concentration
+                    resolver-sim.protocols.sew.financial.finality
+                    resolver-sim.protocols.sew.financial.liabilities
+                    resolver-sim.protocols.sew.financial.loss
+                    resolver-sim.protocols.sew.financial.solvency
+                    resolver-sim.protocols.sew.held-reconstruction
+                    resolver-sim.protocols.sew.held-mutation-admission
+                    resolver-sim.protocols.sew.invariants
+                    resolver-sim.protocols.sew.invariants.bond
+                    resolver-sim.protocols.sew.invariants.dispute
+                    resolver-sim.protocols.sew.invariants.escrow
+                    resolver-sim.protocols.sew.invariants.fees
+                    resolver-sim.protocols.sew.invariants.governance
+                    resolver-sim.protocols.sew.invariants.accounting
+                    resolver-sim.protocols.sew.invariants.settlement
+                    resolver-sim.protocols.sew.invariants.solvency
+                    resolver-sim.protocols.sew.invariants.state
+                    resolver-sim.protocols.sew.invariants.temporal
+                    resolver-sim.protocols.sew.invariants.yield
+                    resolver-sim.protocols.sew.lifecycle
+                    resolver-sim.protocols.sew.registry
+                    resolver-sim.protocols.sew.related-claims
+                    resolver-sim.protocols.sew.resolution
+                    resolver-sim.protocols.sew.resolution-basis
+                    resolver-sim.protocols.sew.resolution-decision
+                    resolver-sim.protocols.sew.slash-evidence
+                    resolver-sim.protocols.sew.snapshot
+                    resolver-sim.protocols.sew.snapshot-presets
+                    resolver-sim.protocols.sew.terminal-evidence-publication
+                    resolver-sim.protocols.sew.terminal-state-snapshot
+                    resolver-sim.protocols.sew.trace-metadata
+                    resolver-sim.protocols.sew.transition-assurance
+                    resolver-sim.protocols.sew.yield-capabilities],
+                   :entry-namespaces
+                   [resolver-sim.protocols.adjudication
+                    resolver-sim.protocols.adjudication-authentication-verification
+                    resolver-sim.protocols.sew
+                    resolver-sim.protocols.sew.actions
+                    resolver-sim.protocols.sew.config
+                    resolver-sim.protocols.sew.invariants.yield
+                    resolver-sim.protocols.sew.invariants.accounting
+                    resolver-sim.protocols.sew.appeal-bond-projection
+                    resolver-sim.protocols.sew.dispute-resolution-terminal-envelope
+                    resolver-sim.protocols.sew.held-reconstruction
+                    resolver-sim.protocols.sew.terminal-evidence-publication
+                    resolver-sim.protocols.sew.terminal-state-snapshot
+                    resolver-sim.cancellation.admission
+                    resolver-sim.cancellation.ordinary-planner
+                    resolver-sim.cancellation.party-preconditions
+                    resolver-sim.cancellation.sew-escrow-snapshot
+                    resolver-sim.cancellation.sew-projection],
+                   :material [],
+                   :source-kind :package-classpath},
+       :sew-yield-integration-v1
+       #:component{:plane :protocol-extension,
+                   :requires
+                   [:prf/sew-protocol-model-v1 :prf/yield-runtime-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.yield.invariants
+                    resolver-sim.protocols.sew.yield.policy
+                    resolver-sim.protocols.sew.yield.risk-policy
+                    resolver-sim.protocols.sew.yield-extension],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.yield-extension],
+                   :material [],
+                   :source-kind :package-classpath},
+       :sew-financial-lifecycle-v1
+       #:component{:plane :protocol-extension,
+                   :requires [:prf/sew-protocol-model-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.financial.lifecycle
+                    resolver-sim.protocols.sew.financial.episode-report
+                    resolver-sim.protocols.sew.reclaimed-reconstruction],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.financial.lifecycle
+                    resolver-sim.protocols.sew.financial.episode-report
+                    resolver-sim.protocols.sew.reclaimed-reconstruction],
+                   :material [],
+                   :source-kind :package-classpath}}}
